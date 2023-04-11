@@ -153,6 +153,20 @@ class CompaniesController extends Controller
         $company->users()->sync($request->users);
         $company->save();
 
+        $company->users()->attach($request->users);
+
+        foreach($company->users as $user){
+           
+            
+            $testMailData = [
+                'title' => 'You Joined a new company',
+                'body' => 'you joined a new f comapuny'
+            ];
+    
+            Mail::to($user->email)->send(new SendMail($testMailData));
+
+            Log::info($user->email);
+        }
         
 
         $companies = Company::where('user_id', auth()->id())->get();

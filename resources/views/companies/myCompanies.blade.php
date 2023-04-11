@@ -31,6 +31,7 @@
                                     <a href="#" class="btn btn-secondary">{{$user->name}}</a>
                                 @endforeach
                             </div>
+                            <a href="{{route('company.edit', ['id'=>$company->id])}}" class="btn btn-primary">Edit Company</a>
                         </div>
                         </div>                    
                     </div>
